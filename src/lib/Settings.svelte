@@ -76,7 +76,7 @@ const gptDefaults = {
   temperature: 1,
   top_p: 1,
   n: 1,
-  stream: true,
+  stream: false,
   stop: null,
   max_tokens: 512,
   presence_penalty: 0,
@@ -89,7 +89,7 @@ const gptDefaults = {
 const defaults:ChatSettings = {
   ...gptDefaults,
   profile: '',
-  characterName: 'ChatGPT',
+  characterName: 'TritonGPT',
   profileName: '',
   profileDescription: '',
   continuousChat: 'fifo',
