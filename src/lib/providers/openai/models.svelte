@@ -57,6 +57,13 @@ const chatModelBase = {
 } as ModelDetail
 
 // Reference: https://openai.com/pricing#language-models
+const localllama = {
+      ...chatModelBase,
+      help: 'Below are the settings that vLLM (in OpenAI compatibility mode) allows to be changed for the API calls. See the <a target="_blank" href="https://platform.openai.com/docs/api-reference/chat/create">OpenAI API docs</a> for more details.',
+      prompt: 0.0000, // $0.0015 per 1000 tokens prompt
+      completion: 0.000, // $0.002 per 1000 tokens completion
+      max: 4096 // 4k max token buffer
+}
 const gpt35 = {
       ...chatModelBase,
       prompt: 0.0000015, // $0.0015 per 1000 tokens prompt
@@ -89,6 +96,7 @@ const gpt4128kpreview = {
 }
 
 export const chatModels : Record<string, ModelDetail> = {
+  'llama-2': { ...localllama },
   'gpt-3.5-turbo': { ...gpt3516k },
   'gpt-3.5-turbo-0301': { ...gpt35 },
   'gpt-3.5-turbo-0613': { ...gpt35 },

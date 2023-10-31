@@ -20,7 +20,7 @@ import {
 } from './Types.svelte'
     import { getModelDetail, getTokens } from './Models.svelte'
 
-const defaultModel:Model = 'gpt-3.5-turbo'
+const defaultModel:Model = 'llama-2'
 const defaultModelPetals:Model = 'stabilityai/StableBeluga2'
 
 export const getDefaultModel = (): Model => {
