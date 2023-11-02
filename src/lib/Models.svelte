@@ -13,8 +13,7 @@ const unknownDetail = {
 } as ModelDetail
 
 export const supportedChatModels : Record<string, ModelDetail> = {
-    ...openAiModels,
-    ...petalsModels
+    ...openAiModels
 }
 
 export const supportedImageModels : Record<string, ModelDetail> = {
@@ -22,8 +21,7 @@ export const supportedImageModels : Record<string, ModelDetail> = {
 }
 
 const lookupList = {
-    ...supportedChatModels,
-    ...supportedImageModels
+    ...supportedChatModels
 }
 
 Object.entries(lookupList).forEach(([k, v]) => {

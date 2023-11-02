@@ -59,12 +59,18 @@ const chatModelBase = {
 // Reference: https://openai.com/pricing#language-models
 const localllama = {
       ...chatModelBase,
-      getEndpoint: import.meta.env.VITE_ENDPOINT_LLAMA || chatModelBase.getEndpoint(model),
+      getEndpoint: (model) => { return (import.meta.env.VITE_LLAMA_API_BASE!="") ? (import.meta.env.VITE_LLAMA_API_BASE + getEndpointCompletions()) : chatModelBase.getEndpoint(model); } , 
       help: 'Below are the settings that vLLM (in OpenAI compatibility mode) allows to be changed for the API calls. See the <a target="_blank" href="https://platform.openai.com/docs/api-reference/chat/create">OpenAI API docs</a> for more details.',
       prompt: 0.0000, // $0.0015 per 1000 tokens prompt
       completion: 0.000, // $0.002 per 1000 tokens completion
-      max: 4096 // 4k max token buffer
+      max: 4096, // 4k max token buffer
+      enabled: true
 }
+
+const placeholder = {
+      ...chatModelBase
+}
+
 const gpt35 = {
       ...chatModelBase,
       prompt: 0.0000015, // $0.0015 per 1000 tokens prompt
@@ -97,22 +103,9 @@ const gpt4128kpreview = {
 }
 
 export const chatModels : Record<string, ModelDetail> = {
-  'llama-2': { ...localllama },
-  'gpt-3.5-turbo': { ...gpt3516k },
-  'gpt-3.5-turbo-0301': { ...gpt35 },
-  'gpt-3.5-turbo-0613': { ...gpt35 },
-  'gpt-3.5-turbo-1106': { ...gpt3516k },
-  'gpt-3.5-turbo-16k': { ...gpt3516k },
-  'gpt-3.5-turbo-16k-0613': { ...gpt3516k },
-  'gpt-4': { ...gpt4 },
-  'gpt-4-turbo-preview': { ...gpt4128kpreview },
-  'gpt-4-0314': { ...gpt4 },
-  'gpt-4-0613': { ...gpt4 },
-  'gpt-4-1106-preview': { ...gpt4128kpreview },
-  'gpt-4-0125-preview': { ...gpt4128kpreview },
-  'gpt-4-32k': { ...gpt432k },
-  'gpt-4-32k-0314': { ...gpt432k },
-  'gpt-4-32k-0613': { ...gpt432k }
+  'llama-2 70B': { ...localllama },
+  'CodeLlama 34B': { ...placeholder },
+  'Mistral-7B': { ...placeholder }
 }
 
 const imageModelBase = {
