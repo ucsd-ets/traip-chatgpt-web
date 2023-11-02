@@ -59,6 +59,7 @@ const chatModelBase = {
 // Reference: https://openai.com/pricing#language-models
 const localllama = {
       ...chatModelBase,
+      getEndpoint: (model) => "https://llm-dev.dsmlp.ucsd.edu/v1/chat/completions",
       help: 'Below are the settings that vLLM (in OpenAI compatibility mode) allows to be changed for the API calls. See the <a target="_blank" href="https://platform.openai.com/docs/api-reference/chat/create">OpenAI API docs</a> for more details.',
       prompt: 0.0000, // $0.0015 per 1000 tokens prompt
       completion: 0.000, // $0.002 per 1000 tokens completion
