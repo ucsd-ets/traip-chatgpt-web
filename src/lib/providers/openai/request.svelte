@@ -47,15 +47,11 @@ export const chatRequest = async (
           // Remove updating indicator
             chatRequest.updating = 1 // hide indicator, but still signal we're updating
             chatRequest.updatingMessage = ''
-            // console.log('ev.data', ev.data)
             if (!chatResponse.hasFinished()) {
               if (ev.data === '[DONE]') {
               // ?? anything to do when "[DONE]"?
               } else {
-                d=ev.data
-                d.replace(/^data: /, '')
-                const data = JSON.parse(d)
-                console.log('data', data)
+                const data = JSON.parse(ev.data)
                 window.setTimeout(() => { chatResponse.updateFromAsyncResponse(data) }, 1)
               }
             }
